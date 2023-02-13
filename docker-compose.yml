@@ -3,8 +3,10 @@ services:
   postgres:
     image: postgres:13.3
     environment:
-      POSTGRES_DB: "SimpleDB"
+      POSTGRES_DB: "demo"
       POSTGRES_USER: "SimpleDB"
       POSTGRES_PASSWORD: "SimpleDB"
+    volumes:
+      - ./airport.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
