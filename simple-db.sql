@@ -92,4 +92,16 @@ CREATE TABLE orders(
 );
 
 
-CREATE TRIGGER
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (1, 'Bob', 'Butchers', '83532525252', 'test@ya.ru', '12345', 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (2, 'Stas', 'Asket', '86246726274', 'stasyan4ik@mail.ru', '12345', 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (3, 'Misha', 'Polyakov', '89434255621', 'MishGUN_228@yandex.ru', 'esg', 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (4, 'Maligos', 'Malder', '89858724872', 'furriFan@yahoo.com', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (5, 'Tommy', 'Angelo', '88005553535', 'salieriii@icloud.com', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (6, 'Timmy', 'Castel', '84958232848', 'James_Bond_0007@ya.ru', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (7, 'Egor', 'Suraev', '84495829839', 'BtwIUseAstraLinux@astra.ru', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (8, 'Larisa', 'Dolina', '89850294092', 'Rattatatatat@google.com', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (9, 'Anastasia', 'Komarova', '89854446363', 'Nastyha_1999@mail.ru', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (10, 'Alextraza', 'Tears', '84953669234', 'Elena_Bodrova_1969@yandex.ru', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (11, 'Barbara', 'Antalia', '89292039309', 'GenshinFanKseno@gmail.com', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (12, 'Kirill', 'Krug', '84958381949', 'Little_Cowboy@ya.ru', null, 'iron', '$0.00');
+INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (13, 'Igor', 'Kotelevec', '84959813981', 'PAPOCHKA@mail.ru', null, 'iron', '$0.00');
