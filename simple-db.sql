@@ -76,8 +76,8 @@ CREATE TABLE clients(
     phone_number VARCHAR(16),
     email VARCHAR(32),
     password VARCHAR(256),
-    status VARCHAR(128),
-    turnover MONEY
+    status VARCHAR(32) DEFAULT "iron",
+    turnover MONEY DEFAULT 0
 );
 
 CREATE TABLE orders(
