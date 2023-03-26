@@ -12,20 +12,12 @@ CREATE TABLE product(
     price MONEY,
     color VARCHAR(128),
     weight NUMERIC,
-    dimensions INTEGER,
     description varchar(256),
     is_certified BOOLEAN
 );
 
-CREATE TABLE type(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(128),
-    percent INTEGER,
-    premium BOOLEAN
-);
 
 CREATE TABLE branches(
-    branch_type INTEGER REFERENCES type(id),
     id SERIAL PRIMARY KEY,
     address VARCHAR(128),
     area INTEGER,
@@ -74,9 +66,9 @@ CREATE TABLE clients(
     first_name VARCHAR(64),
     last_name VARCHAR(64),
     phone_number VARCHAR(16),
-    email VARCHAR(32),
+    email VARCHAR(32) UNIQUE,
     password VARCHAR(256),
-    status VARCHAR(32) DEFAULT "iron",
+    status VARCHAR(32) DEFAULT 'silver',
     turnover MONEY DEFAULT 0
 );
 
@@ -105,3 +97,17 @@ INSERT INTO public.clients (id, first_name, last_name, phone_number, email, pass
 INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (12, 'Kirill', 'Krug', '84958381949', 'Little_Cowboy@ya.ru', '7198d230ff2b1998f8e7e82734aec0aac35d6d66dcccf75c0f5ba0ff3fb576d4', 'iron', '$0.00');
 INSERT INTO public.clients (id, first_name, last_name, phone_number, email, password, status, turnover) VALUES (13, 'Igor', 'Kotelevec', '84959813981', 'PAPOCHKA@mail.ru', 'ee5ca09602bb435890e739608ee3ad93f4cb0d3da846ca5b1a809a613abcf74b', 'iron', '$0.00');
 
+INSERT INTO public.status (id, name) VALUES (1, 'paid');
+INSERT INTO public.status (id, name) VALUES (2, 'waiting');
+INSERT INTO public.status (id, name) VALUES (3, 'rejected');
+
+INSERT INTO public.product_type (id, name, is_fragile, is_cold_state, is_over_18) VALUES (1, 'sigar', true, false, true);
+INSERT INTO public.product_type (id, name, is_fragile, is_cold_state, is_over_18) VALUES (2, 'vaporizers', true, false, true);
+INSERT INTO public.product_type (id, name, is_fragile, is_cold_state, is_over_18) VALUES (3, 'liquid', true, false, true);
+INSERT INTO public.product_type (id, name, is_fragile, is_cold_state, is_over_18) VALUES (4, 'hookah', true, false, true);
+
+INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (1, 2, '$50.00', 'Grey', 10, 'Premium cuban sigar Castro', true);
+INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (3, 1, '$5.00', 'Black', 50, 'Premium liquid Husky', false);
+INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (3, 3, '$5.00', 'Black', 50, 'Liquid voodoo', true);
+INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (2, 4, '$50.00', 'White', 50, 'Smok small vaporizer', true);
+INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (4, 5, '$1,000.00', 'Black', 1000, 'Turkish hookah', true);
