@@ -75,8 +75,6 @@ CREATE TABLE clients(
 CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES clients(id),
-    product_id INTEGER REFERENCES product(id),
-    amount MONEY,
     total_price MONEY,
     type_pay VARCHAR(128),
     branch_id INTEGER REFERENCES branches(id),
@@ -149,3 +147,9 @@ INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (2, 12);
 INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (3, 13);
 INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (4, 14);
 INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (5, 15);
+
+INSERT INTO public.stock (product_id, branch_id, id, count, is_responsible) VALUES (2, 1, 1, 50, true);
+INSERT INTO public.stock (product_id, branch_id, id, count, is_responsible) VALUES (2, 2, 2, 50, true);
+INSERT INTO public.stock (product_id, branch_id, id, count, is_responsible) VALUES (3, 3, 3, 100, true);
+INSERT INTO public.stock (product_id, branch_id, id, count, is_responsible) VALUES (5, 4, 4, 5, true);
+INSERT INTO public.stock (product_id, branch_id, id, count, is_responsible) VALUES (4, 5, 5, 15, true);

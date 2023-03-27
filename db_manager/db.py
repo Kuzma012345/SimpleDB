@@ -2,12 +2,10 @@ import psycopg2
 import psycopg2.extras
 
 ADD_ORDER = """INSERT INTO orders(
-  client_id, product_id, amount, total_price, 
+  client_id, total_price, 
   type_pay, branch_id, status_id
 )VALUES( 
-  %(client)s, 
-  %(product)s, 
-  %(count)s, 
+  %(client)s,
   %(total_price)s, 
   %(type_pay)s, 
   %(branch_id)s, 
@@ -19,6 +17,7 @@ ADD_ORDER = """INSERT INTO orders(
 class Database:
      
     def __exec(self, script: str, data: dict):
+        print(data)
         self.cursor.execute(script, data)
         self.connection.commit()
 
@@ -36,5 +35,5 @@ class Database:
         )
 
     def add_order(self, **kwargs):
-        self.__exec(ADD_ORDER, **kwargs)
+        self.__exec(script=ADD_ORDER, data=kwargs)
 
