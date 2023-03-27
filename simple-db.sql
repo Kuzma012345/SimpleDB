@@ -21,13 +21,12 @@ CREATE TABLE branches(
     id SERIAL PRIMARY KEY,
     address VARCHAR(128),
     area INTEGER,
-    rent INTEGER,
-    id_responsible INTEGER,
+    rent MONEY,
     email VARCHAR(128),
     postcode INTEGER,
     phone_number VARCHAR(16),
     count_stuff SMALLINT,
-    rating smallint
+    order_average_cost MONEY
 );
 
 CREATE TABLE stuff(
@@ -40,6 +39,7 @@ CREATE TABLE stuff(
      experience SMALLINT,
      phone_number VARCHAR(16),
      email VARCHAR(128),
+     password VARCHAR(128),
      description VARCHAR(256)
 );
 
@@ -111,3 +111,41 @@ INSERT INTO public.product (type, id, price, color, weight, description, is_cert
 INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (3, 3, '$5.00', 'Black', 50, 'Liquid voodoo', true);
 INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (2, 4, '$50.00', 'White', 50, 'Smok small vaporizer', true);
 INSERT INTO public.product (type, id, price, color, weight, description, is_certified) VALUES (4, 5, '$1,000.00', 'Black', 1000, 'Turkish hookah', true);
+
+INSERT INTO public.branches (id, address, area, rent, email, postcode, phone_number, count_stuff, order_average_cost) VALUES (1, 'Sergey Radonezshky Street, 9', 200, '$1,000.00', 'vasilev@email.com', 101524, '89150034112', 3, '$10,000.00');
+INSERT INTO public.branches (id, address, area, rent, email, postcode, phone_number, count_stuff, order_average_cost) VALUES (2, 'Stroykovskaya, 10', 200, '$800.00', 'abakanov@tabacoo.shop', 101812, '89123241123', 3, '$5,000.00');
+INSERT INTO public.branches (id, address, area, rent, email, postcode, phone_number, count_stuff, order_average_cost) VALUES (3, 'Abelmanovskaya, 4', 200, '$750.00', 'termanov@tabacoo.shop', 101231, '89230345824', 3, '$7,500.00');
+INSERT INTO public.branches (id, address, area, rent, email, postcode, phone_number, count_stuff, order_average_cost) VALUES (4, 'Talalikhina, 12', 200, '$825.00', 'suraev@astralinux.com', 101912, '89011019324', 3, '$15,000.00');
+INSERT INTO public.branches (id, address, area, rent, email, postcode, phone_number, count_stuff, order_average_cost) VALUES (5, 'Delovoy, 15', 400, '$2,000.00', 'barinov@tabacoo.com', 101235, '89251844212', 3, '$50,000.00');
+
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (1, '$300.00', 'Seller', 'Vadim', 'Abramovich', 30, 2, '89208312332', 'abramovich@tabacoo.shop', NULL, 'Продавец');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (2, '$300.00', 'Seller', 'Ivan', 'Ivanov', 24, 4, '89104239423', 'Ivanov@tabacoo.shop', NULL, 'Продавец');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (3, '$300.00', 'Seller', 'Oleg', 'Lobaev', 26, 2, '89031214323', 'lobaev@tacoo.shop', NULL, 'Продавец');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (4, '$300.00', 'Seller', 'Dmitriy', 'Avagov', 28, 5, '88005553535', 'avagov@tacoo.shop', NULL, 'Продавец');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (5, '$300.00', 'Seller', 'Dmitriy', 'Chegov', 31, 6, '89154291313', 'Chegov@tacoo.shop', NULL, 'Продавец');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (6, '$150.00', 'Supplier', 'Ahmed', 'Dzhagov', 40, 10, '31949231323', 'Dzhagov@tabacoo.shop', NULL, 'Грузчик');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (7, '$150.00', 'Supplier', 'Azamat', 'Mahmedov', 32, 4, '80132341952', 'Mahmedov@tabacoo.shop', NULL, 'Грузчик');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (8, '$150.00', 'Supplier', 'Muhamed', 'Mambek', 34, 6, '80192354123', 'Mambek@tabacoo.shop', NULL, 'Грузчик');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (9, '$150.00', 'Supplier', 'Akhmat', 'Medov', 28, 3, '89231320423', 'Medov@tabacoo.shop', NULL, 'Грузчик');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (10, '$150.00', 'Supplier', 'Alavan', 'Alavanov', 31, 4, '89231332434', 'Alavanov@tabacoo.shop', NULL, 'Грузчик');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (11, '$1,000.00', 'Director', 'Ivan', 'Kuzbasov', 40, 10, '89012375983', 'Kuzbasov@tabacoo.shop', NULL, 'Директор');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (12, '$1,000.00', 'Director', 'Stanislav', 'Kopal', 34, 4, '89012375443', 'Kopal@tabacoo.shop', NULL, 'Директор');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (13, '$1,000.00', 'Director', 'Olga', 'Ivanova', 35, 5, '89251239292', 'Ivanova@tabacoo.shop', NULL, 'Директор');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (14, '$1,000.00', 'Director', 'Egor', 'Valuev', 42, 12, '89234251234', 'Valuev@tabacoo.shop', NULL, 'Директор');
+INSERT INTO public.stuff (id, salary, job_title, first_name, last_name, age, experience, phone_number, email, password, description) VALUES (15, '$1,000.00', 'Direcot', 'Dmitriy', 'Chubaev', 23, 5, '89102342554', 'Chubaev@tabacoo.shop', NULL, 'Директор');
+
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (1, 1);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (2, 2);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (3, 3);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (4, 4);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (5, 5);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (1, 6);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (2, 7);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (3, 8);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (4, 9);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (5, 10);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (1, 11);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (2, 12);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (3, 13);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (4, 14);
+INSERT INTO public.branches_stuff (branch_id, stuff_id) VALUES (5, 15);
