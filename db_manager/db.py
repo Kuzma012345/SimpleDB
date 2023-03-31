@@ -23,7 +23,6 @@ class Database:
     def __exec(self, script: str, data: dict):
         print(f"Entry data: {data}, script: {script}")
         self.cursor.execute(script, data)
-        self.connection.commit()
 
     def __select(self, script: str, data: dict):
         print(f"Entry data: {data}, script: {script}")
@@ -42,9 +41,10 @@ class Database:
         })
         return self.dict_cursor.fetchone()["price"]
 
-    def decrease_product_count(self, product_id, count):
+    def decrease_product_count(self, product_id, count, branch_id):
         self.__exec(script=Scripts.DECREASE_PRODUCT_COUNT, data={
             "product_id": product_id,
+            "branch_id": branch_id,
             "count": count
         })
 
@@ -57,6 +57,12 @@ class Database:
     def update_branch_turnover(self, branch_id):
         self.__select(script=Scripts.UPDATE_BRANCH_TURNOVER, data={
             "branch_id": branch_id
+        })
+
+    def update_client_status(self, status, client_id):
+        self.__select(script=Scripts.UPDATE_CLIENT_STATUS, data={
+            "status": status,
+            "client_id": client_id
         })
 
     def add_order(self,
@@ -87,9 +93,23 @@ class Database:
                 client_id=client_id,
                 order_amount=total_price
             )
+
+            client_turnover = self.dict_cursor.fetchone()["turnover"]
+
+            # TODO НЕПРАВИЛЬНО УМЕНЬШАЕТ КОЛ-ВО ПРОДУКТОВ : DONE
             self.decrease_product_count(
                 product_id=product_id,
-                count=count
+                count=count,
+                branch_id=branch_id
             )
             self.update_branch_turnover(branch_id=branch_id)
+            if client_turnover >= 100000:
+                self.update_client_status(client_id=client_id, status="Premium")
+            elif client_turnover >= 10000:
+                self.update_client_status(client_id=client_id, status="Gold")
+            else:
+                self.update_client_status(client_id=client_id, status="iron")
 
+            self.connection.commit()
+        else:
+            raise Exception("Cannot create order which contains more count than branch stock of product")

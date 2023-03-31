@@ -41,7 +41,8 @@ class Scripts:
     SET
      turnover = turnover + %(turnover)s
     where 
-     id = %(client_id)s;
+     id = %(client_id)s
+    RETURNING turnover;
     """
 
     DECREASE_PRODUCT_COUNT = """
@@ -50,7 +51,7 @@ class Scripts:
     SET
      count = count - %(count)s
     where
-     id = %(product_id)s;
+     product_id = %(product_id)s and branch_id = %(branch_id)s;
     """
 
     UPDATE_BRANCH_TURNOVER = """
@@ -61,4 +62,12 @@ class Scripts:
                           (SELECT count(id) FROM orders WHERE branch_id = %(branch_id)s)
     WHERE
      id = %(branch_id)s;                      
+    """
+
+    UPDATE_CLIENT_STATUS = """
+    UPDATE
+     clients
+    SET
+     status = %(status)s
+    where id = %(client_id)s
     """
