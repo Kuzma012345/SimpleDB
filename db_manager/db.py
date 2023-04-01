@@ -3,6 +3,7 @@ import logging
 import psycopg2
 import psycopg2.extras
 
+from db_manager.encrypt.encrypt import Encrypt
 from db_manager.sql import Scripts
 
 
@@ -113,3 +114,53 @@ class Database:
             self.connection.commit()
         else:
             raise Exception("Cannot create order which contains more count than branch stock of product")
+
+    def add_client(self,
+                   first_name: str,
+                   last_name: str,
+                   phone_number: str,
+                   email: str,
+                   password: str
+                   ) -> None:
+        encrypt_password = Encrypt.encrypt_password(password=password)
+        self.__exec(script=Scripts.ADD_CLIENT, data={
+            "first_name": first_name,
+            "last_name": last_name,
+            "phone_number": phone_number,
+            "email": email,
+            "password": encrypt_password
+        })
+        self.connection.commit()
+
+    def add_stuff(self,
+                  salary: int,
+                  job_title: str,
+                  first_name: str,
+                  last_name: str,
+                  age: int,
+                  experience: int,
+                  phone_number: str,
+                  email: str,
+                  password: str,
+                  description: str,
+                  branch_id: str
+                  ) -> None:
+        encrypt_password = Encrypt.encrypt_password(password=password)
+        self.__exec(script=Scripts.ADD_STUFF, data={
+            "salary": salary,
+            "job_title": job_title,
+            "first_name": first_name,
+            "last_name": last_name,
+            "age": age,
+            "experience": experience,
+            "phone_number": phone_number,
+            "email": email,
+            "password": encrypt_password,
+            "description": description
+        })
+        stuff_id = self.cursor.fetchone()[0]
+        self.__exec(script=Scripts.ADD_BRANCHES_STUFF, data={
+            "branch_id": branch_id,
+            "stuff_id": stuff_id
+        })
+        self.connection.commit()
