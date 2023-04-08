@@ -5,6 +5,7 @@ services:
     environment:
       POSTGRES_USER: "SimpleDB"
       POSTGRES_PASSWORD: "SimpleDB"
+      POSTGRES_DATABASE: "SimpleDB"
     volumes:
       - ./simple-db.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
