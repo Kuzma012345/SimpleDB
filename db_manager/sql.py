@@ -69,5 +69,44 @@ class Scripts:
      clients
     SET
      status = %(status)s
-    where id = %(client_id)s
+    where id = %(client_id)s;
+    """
+
+    ADD_CLIENT = """
+    INSERT INTO clients(
+     "first_name", "last_name", "phone_number", "email", "password"
+    )VALUES(
+     %(first_name)s,
+     %(last_name)s,
+     %(phone_number)s,
+     %(email)s,
+     %(password)s
+    ); 
+    """
+
+    ADD_STUFF = """
+    INSERT INTO stuff(
+     "salary", "job_title", "first_name", "last_name", "age",
+     "experience", "phone_number", "email", "password", "description"
+    )VALUES(
+     %(salary)s,
+     %(job_title)s,
+     %(first_name)s,
+     %(last_name)s,
+     %(age)s,
+     %(experience)s,
+     %(phone_number)s,
+     %(email)s,
+     %(password)s,
+     %(description)s
+    ) RETURNING id;
+    """
+
+    ADD_BRANCHES_STUFF = """
+    INSERT INTO branches_stuff(
+     "branch_id", "stuff_id"
+    )VALUES(
+     %(branch_id)s,
+     %(stuff_id)s
+    ); 
     """
